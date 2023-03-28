@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/app :: layout('加入者検索結果', ~{::content})}" lang="ja">
+<div th:fragment="content">
+    <table>
+        <thead>
+            <tr>
+                <td>加入者ID</td>
+                <td>氏名</td>
+                <td>住所</td>
+                <td>加入日</td>
+                <td>解約日</td>
+                <td>支払方法</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${!#lists.isEmpty(result)}" th:each="row : ${result}">
+                <td><a th:href="@{/member/edit(mid=${row.memberId})}" th:text="${row.memberId}"></a></td>
+                <td th:text="${row.name}"></td>
+                <td th:text="${row.address}"></td>
+                <td th:text="${row.startDate}"></td>
+                <td th:text="${row.endDate}"></td>
+                <td th:text="${row.paymentMethod}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</html>
