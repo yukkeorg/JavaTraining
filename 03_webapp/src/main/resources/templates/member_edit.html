@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/app :: layout('加入者編集', ~{::content})}" lang="ja">
+<div th:fragment="content">
+    <form th:action="@{/member/edit}" th:object="${member}" method="POST">
+        <div class="form_wrapper">
+            <div class="label">
+                <label for="memberId">加入者ID</label>
+            </div>
+            <div class="input_item">
+                <input type="text" th:field="*{memberId}">
+            </div>
+            <div class="label">
+                <label for="mail">メールアドレス</label>
+            </div>
+            <div class="input_item">
+                <input type="text" th:field="*{mail}" maxlength="256" style="width:32em;">
+            </div>
+            <div class="label">
+                <label for="name">氏名</label>
+            </div>
+            <div class="input_item">
+                <input type="text" th:field="*{name}" maxlength="16" style="width:16em;">
+            </div>
+            <div class="label">
+                <label for="address">住所</label>
+            </div>
+            <div class="input_item">
+                <input type="text" th:field="*{address}"  maxlength="128" style="width:32em;">
+            </div>
+            <div class="label">
+                <label for="startDate">加入日</label>
+            </div>
+            <div class="input_item">
+                <input type="date" th:field="*{startDate}" name="joining_date">
+            </div>
+            <div class="label">
+                <label for="endDate">解約日</label>
+            </div>
+            <div class="input_item">
+                <input type="date" th:field="*{endDate}">
+            </div>
+            <div class="label">
+                <label for="paymentMethod">決済方法</label>
+            </div>
+            <div class="input_item">
+                <select th:field="*{paymentMethod}">
+                    <option value="1">クレジット</option>
+                    <option value="2">銀行振込</option>
+                </select>
+            </div>
+
+            <div class="label">
+                <label>適用料金</label>
+            </div>
+            <div class="input_item">
+                <div>
+                    <label><input type="checkbox" name="ryokin" value="00001" checked> 基本料金</label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="ryokin" value="00002"> オプション料金A
+                        <input type="date" name="ryokin_00002_start" id="ryokin_00002_start"> ～
+                        <input type="date" name="ryokin_00002_end" id="ryokin_00002_end">
+                    </label>
+                </div>
+            </div>
+            
+            <div class="label">
+            </div>            
+            <div class="input_item">
+                <input type="submit" value="決定">
+                <a href="">キャンセル</a>
+            </div>    
+        </div>
+    </form>
+</div>
+</html>

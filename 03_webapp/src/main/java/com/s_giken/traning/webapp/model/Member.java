@@ -22,6 +22,9 @@ public class Member {
     @Column(name = "member_id")
     private int memberId;
 
+    @Column(name = "mail")
+    private String mail;
+    
     @Column(name = "name")
     private String name;
 

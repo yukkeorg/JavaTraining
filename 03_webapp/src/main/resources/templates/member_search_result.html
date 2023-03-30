@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <td>加入者ID</td>
+                <td>メールアドレス</td>
                 <td>氏名</td>
                 <td>住所</td>
                 <td>加入日</td>
@@ -15,6 +16,7 @@
         <tbody>
             <tr th:if="${!#lists.isEmpty(result)}" th:each="row : ${result}">
                 <td><a th:href="@{/member/edit(mid=${row.memberId})}" th:text="${row.memberId}"></a></td>
+                <td th:text="${row.mail}"></td>
                 <td th:text="${row.name}"></td>
                 <td th:text="${row.address}"></td>
                 <td th:text="${row.startDate}"></td>
