@@ -7,7 +7,7 @@ import com.s_giken.traning.webapp.model.Member;
 import com.s_giken.traning.webapp.model.MemberSearchCondition;
 
 public interface MemberService {
-    Optional<Member> getMemberById(int memberId);
+    Optional<Member> findMemberById(int memberId);
     List<Member> findAll();
     List<Member> findMembers(MemberSearchCondition memberSearchCondition);
 }

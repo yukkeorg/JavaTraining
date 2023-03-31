@@ -5,17 +5,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.s_giken.traning.webapp.exception.DataNotFoundException;
 import com.s_giken.traning.webapp.model.Member;
 import com.s_giken.traning.webapp.model.MemberSearchCondition;
 import com.s_giken.traning.webapp.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -43,7 +38,7 @@ public class MemberController {
 
 	@GetMapping("/edit/{id}")
 	public String editMember(@PathVariable int id, Model model) {
-		var member = memberService.getMemberById(id);
+		var member = memberService.findMemberById(id);
 		if(!member.isPresent()) {
 			throw new DataNotFoundException("");
 		}
@@ -51,7 +46,7 @@ public class MemberController {
 		return "member_edit";
 	}
 
-	@GetMapping("/edit/new")
+	@GetMapping("/add")
 	public String addMember(Model model) {
 		var member = new Member();
 		model.addAttribute("member", member);

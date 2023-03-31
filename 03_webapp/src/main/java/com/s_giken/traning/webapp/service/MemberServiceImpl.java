@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
     private  MemberRepository memberRepository;
 
     @Override
-    public Optional<Member> getMemberById(int memberId) {
+    public Optional<Member> findMemberById(int memberId) {
         var member = memberRepository.findById(memberId);
         return member;
     }

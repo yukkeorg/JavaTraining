@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/app :: layout('料金検索', ~{::content})}" lang="ja">
+<div th:fragment="content">
+    <form th:action="@{/charge/search}" th:object="${chargeSearchCondition}" method="POST">
+        <div class="form_wrapper">
+            <div class="label"><label for="name">料金名</label></div>
+            <div class="input_item"><input type="text" th:field="*{name}"></div>
+            <div class="label"></div>
+            <div class="input_item"><input type="submit" value="検索"></div>    
+        </div>
+    </form>
+    <div>
+        <a th:href="@{/charge/add}">追加</a>
+    </div>
+</div>
+</html>

@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data   // auto-generate a getter and setter to each member variables.
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "T_MEMBER")
+@Table(name = "T_MEMBER")   // 対応するデータベーステーブル名
+@Data                       // メンバー変数に対するゲッター・セッターを自動生成
+@NoArgsConstructor          // 引数のないコンストラクタを自動生成
+@AllArgsConstructor         // 全てのメンバ変数に対する引数を持つコンストラクタを自動生成
 public class Member {
     @Id
     @Column(name = "member_id")
