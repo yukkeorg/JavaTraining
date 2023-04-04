@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,44 +34,46 @@ public class ChargeController {
 	@PostMapping("/search")
 	public String searchAndListing(@ModelAttribute("chargeSearchCondition") ChargeSearchCondition chargeSearchCodition,
 								   Model model) {
-		var result = chargeService.findAll();
+		var result = chargeService.findByCondition(chargeSearchCodition);
 		model.addAttribute("result", result);
 		return "charge_search_result";
 	}
 
 	@GetMapping("/edit/{id}")
-	public String editCharge(@PathVariable int id, Model model) {
+	public String edit(@PathVariable int id, @ModelAttribute("message") String message, Model model) {
 		var charge = chargeService.findById(id);
 		if(!charge.isPresent()) {
 			throw new DataNotFoundException("");
 		}
+		model.addAttribute("message", message);
 		model.addAttribute("charge", charge);
 		return "charge_edit";
 	}
 
 	@GetMapping("/add")
-	public String addCharge(Model model) {
+	public String add(Model model) {
 		var charge = new Charge();
 		model.addAttribute("charge", charge);
 		return "charge_edit";
 	}
 
 	@PostMapping("/save")
-	public String saveCharge(@Validated Charge charge, BindingResult bindingResult) {
+	public String save(@Validated Charge charge, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if(bindingResult.hasErrors()) {
 			return "charge_edit";
-		}
-		
+		}	
 		chargeService.save(charge);
-		return "redirect:/charge/search";
+		redirectAttributes.addFlashAttribute("message", "保存しました");
+		return "redirect:/charge/edit/" + charge.getChargeId();
 	}
 
 	@GetMapping("/delete/{id}")
-	public String deleteCharge(@PathVariable int id) {
+	public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		if (!chargeService.findById(id).isPresent()) {
 			throw new DataNotFoundException("");
 		}
 		chargeService.deleteById(id);
+		redirectAttributes.addFlashAttribute("message", "削除しました");
 		return "redirect:/charge/search";
 	}
 }

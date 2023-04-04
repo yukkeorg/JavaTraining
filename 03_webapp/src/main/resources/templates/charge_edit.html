@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/app :: layout('料金編集', ~{::content})}" lang="ja">
 <div th:fragment="content">
+    <div th:if="!${#strings.isEmpty(message)}">
+        <span th:text="${message}"></span>
+    </div>
     <form th:action="@{/charge/save}" th:object="${charge}" method="POST">
+        <input type="hidden" th:field="*{chargeId}">
         <div class="form_wrapper">
-            <div class="label">
-                <label for="chargeId">料金ID</label>
-            </div>
-            <div class="input_item">
-                <input type="text" th:field="*{chargeId}">
-            </div>
             <div class="label">
                 <label for="name">料金名</label>
             </div>
@@ -51,7 +49,7 @@
             </div>            
             <div class="input_item">
                 <input type="submit" value="決定">
-                <a href="">キャンセル</a>
+                <a th:href="@{/charge/search}">キャンセル</a>
             </div>    
         </div>
     </form>

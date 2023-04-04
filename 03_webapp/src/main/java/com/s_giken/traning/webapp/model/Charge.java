@@ -2,10 +2,14 @@ package com.s_giken.traning.webapp.model;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
@@ -24,10 +28,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Charge extends AbstractEntity {
+public class Charge {
     @Id
     @Column(name = "charge_id")
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int chargeId;
 
     @Column(name = "name")
@@ -40,13 +44,13 @@ public class Charge extends AbstractEntity {
     @Min(1)
     @Max(2)
     @NotNull
-    private int chargeType;
+    private Integer chargeType;
 
     @Column(name = "amount")
     @Min(value = 0, message = "0以上の整数を入力して下さい")
     @Max(value = 999999, message = "999999以下の整数を入力してください")
     @NotNull
-    private int amount;
+    private Integer amount;
 
     @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -57,8 +61,17 @@ public class Charge extends AbstractEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
-    @Override
-    public Integer getId() {
-        return chargeId;
-    }
+    @CreatedDate
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @LastModifiedDate
+    @Column(name = "updated_date")
+    private Date updatedDate;
+
+    // // for 
+    // @Override
+    // public Integer getId() {
+    //     return chargeId;
+    // }
 }

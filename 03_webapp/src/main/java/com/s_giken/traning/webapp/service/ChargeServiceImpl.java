@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.s_giken.traning.webapp.model.Charge;
+import com.s_giken.traning.webapp.model.ChargeSearchCondition;
 import com.s_giken.traning.webapp.repository.ChargeRepository;
 
 @Service
@@ -25,6 +26,18 @@ public class ChargeServiceImpl implements ChargeService {
     public Optional<Charge> findById(int chargeId) {
         return chargeRepository.findById(chargeId);
     }
+
+    @Override
+    public List<Charge> findByCondition(ChargeSearchCondition condition) {
+        List<Charge> result = null;
+        if(condition.getName() == null || condition.getName().isEmpty()) {
+            result = chargeRepository.findAll();
+        } else {
+            result = chargeRepository.findByNameLike("%" + condition.getName() + "%");
+        }
+        return result;
+    }
+
 
     @Override
     @Transactional
