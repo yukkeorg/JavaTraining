@@ -14,13 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	@GetMapping("/search")
 	public String showSearchCondition(Model model) {
 		var memberSearchCondition = new MemberSearchCondition();
@@ -29,8 +28,9 @@ public class MemberController {
 	}
 
 	@PostMapping("/search")
-	public String searchAndListing(@ModelAttribute("memberSearchCondition") MemberSearchCondition memberSearchCodition,
-								   Model model) {
+	public String searchAndListing(
+			@ModelAttribute("memberSearchCondition") MemberSearchCondition memberSearchCodition,
+			Model model) {
 		var result = memberService.findAll();
 		model.addAttribute("result", result);
 		return "member_search_result";
@@ -38,8 +38,8 @@ public class MemberController {
 
 	@GetMapping("/edit/{id}")
 	public String editMember(@PathVariable int id, Model model) {
-		var member = memberService.findMemberById(id);
-		if(!member.isPresent()) {
+		var member = memberService.findById(id);
+		if (!member.isPresent()) {
 			throw new DataNotFoundException("");
 		}
 		model.addAttribute("member", member);
