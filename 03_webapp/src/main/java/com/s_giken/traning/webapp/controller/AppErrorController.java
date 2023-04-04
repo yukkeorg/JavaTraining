@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/error")
 public class AppErrorController implements ErrorController {
     @RequestMapping
     public ModelAndView error(HttpServletRequest req, ModelAndView mav) {
