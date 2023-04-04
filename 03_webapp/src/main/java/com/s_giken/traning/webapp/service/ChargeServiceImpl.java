@@ -16,7 +16,6 @@ public class ChargeServiceImpl implements ChargeService {
     @Autowired
     private ChargeRepository chargeRepository;
 
-
     @Override
     public List<Charge> findAll() {
         return chargeRepository.findAll();
@@ -30,7 +29,7 @@ public class ChargeServiceImpl implements ChargeService {
     @Override
     public List<Charge> findByCondition(ChargeSearchCondition condition) {
         List<Charge> result = null;
-        if(condition.getName() == null || condition.getName().isEmpty()) {
+        if (condition.getName() == null || condition.getName().isEmpty()) {
             result = chargeRepository.findAll();
         } else {
             result = chargeRepository.findByNameLike("%" + condition.getName() + "%");
@@ -38,15 +37,13 @@ public class ChargeServiceImpl implements ChargeService {
         return result;
     }
 
-
     @Override
     @Transactional
     public void save(Charge charge) {
         var c = chargeRepository.findById(charge.getChargeId());
-        if(c.isPresent()) {
+        if (c.isPresent()) {
 
         }
-
         chargeRepository.save(charge);
     }
 

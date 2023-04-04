@@ -17,13 +17,12 @@ import com.s_giken.traning.webapp.model.Charge;
 import com.s_giken.traning.webapp.model.ChargeSearchCondition;
 import com.s_giken.traning.webapp.service.ChargeService;
 
-
 @Controller
 @RequestMapping("/charge")
 public class ChargeController {
 	@Autowired
 	private ChargeService chargeService;
-	
+
 	@GetMapping("/search")
 	public String showSearchCondition(Model model) {
 		var chargeSearchCondition = new ChargeSearchCondition();
@@ -32,17 +31,19 @@ public class ChargeController {
 	}
 
 	@PostMapping("/search")
-	public String searchAndListing(@ModelAttribute("chargeSearchCondition") ChargeSearchCondition chargeSearchCodition,
-								   Model model) {
+	public String searchAndListing(
+			@ModelAttribute("chargeSearchCondition") ChargeSearchCondition chargeSearchCodition,
+			Model model) {
 		var result = chargeService.findByCondition(chargeSearchCodition);
 		model.addAttribute("result", result);
 		return "charge_search_result";
 	}
 
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable int id, @ModelAttribute("message") String message, Model model) {
+	public String edit(@PathVariable int id, @ModelAttribute("message") String message,
+			Model model) {
 		var charge = chargeService.findById(id);
-		if(!charge.isPresent()) {
+		if (!charge.isPresent()) {
 			throw new DataNotFoundException("");
 		}
 		model.addAttribute("message", message);
@@ -58,10 +59,11 @@ public class ChargeController {
 	}
 
 	@PostMapping("/save")
-	public String save(@Validated Charge charge, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-		if(bindingResult.hasErrors()) {
+	public String save(@Validated Charge charge, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
 			return "charge_edit";
-		}	
+		}
 		chargeService.save(charge);
 		redirectAttributes.addFlashAttribute("message", "保存しました");
 		return "redirect:/charge/edit/" + charge.getChargeId();

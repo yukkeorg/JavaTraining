@@ -7,7 +7,6 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.PrePersist;
 
-
 @MappedSuperclass
 public abstract class AbstractEntity implements Persistable<Integer> {
     @Transient
