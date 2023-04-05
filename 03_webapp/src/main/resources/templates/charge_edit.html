@@ -1,57 +1,84 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/app :: layout('料金編集', ~{::content})}" lang="ja">
-<div th:fragment="content">
-    <div th:if="!${#strings.isEmpty(message)}">
-        <span th:text="${message}"></span>
-    </div>
-    <form th:action="@{/charge/save}" th:object="${charge}" method="POST">
-        <input type="hidden" th:field="*{chargeId}">
-        <div class="form_wrapper">
-            <div class="label">
-                <label for="name">料金名</label>
-            </div>
-            <div class="input_item">
-                <input type="text" th:field="*{name}" maxlength="128" style="width:32em;">
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-            </div>
-            <div class="label">
-                <label for="chargeType">料金種別</label>
-            </div>
-            <div class="input_item">
-                <select th:field="*{chargeType}">
-                    <option value="1">基本料金</option>
-                    <option value="2">オプション</option>
-                </select>
-                <span th:if="${#fields.hasErrors('chargeType')}" th:errors="*{chargeType}"></span>
-            </div>
-            <div class="label">
-                <label for="amount">月額料金</label>
-            </div>
-            <div class="input_item">
-                <input type="number" th:field="*{amount}">
-                <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></span>
-            </div>
-            <div class="label">
-                <label for="startDate">適用開始日</label>
-            </div>
-            <div class="input_item">
-                <input type="date" th:field="*{startDate}" name="joining_date">
-                <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
-            </div>
-            <div class="label">
-                <label for="endDate">適用終了日</label>
-            </div>
-            <div class="input_item">
-                <input type="date" th:field="*{endDate}">
-                <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></span>
-            </div>
-             <div class="label">
-            </div>            
-            <div class="input_item">
-                <input type="submit" value="決定">
-                <a th:href="@{/charge/search}">キャンセル</a>
-            </div>    
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layout/app :: layout('料金編集', ~{::content})}"
+    lang="ja"
+>
+    <div th:fragment="content">
+        <div th:if="!${#strings.isEmpty(message)}">
+            <span th:text="${message}"></span>
         </div>
-    </form>
-</div>
+        <form th:action="@{/charge/save}" th:object="${charge}" method="POST">
+            <input type="hidden" th:field="*{chargeId}" />
+            <div class="form_wrapper">
+                <div class="label">
+                    <label for="name">料金名</label>
+                </div>
+                <div class="input_item">
+                    <input
+                        type="text"
+                        th:field="*{name}"
+                        maxlength="128"
+                        style="width: 32em"
+                    />
+                    <span
+                        th:if="${#fields.hasErrors('name')}"
+                        th:errors="*{name}"
+                    ></span>
+                </div>
+                <div class="label">
+                    <label for="chargeType">料金種別</label>
+                </div>
+                <div class="input_item">
+                    <select th:field="*{chargeType}">
+                        <option value="1">基本料金</option>
+                        <option value="2">オプション</option>
+                    </select>
+                    <span
+                        th:if="${#fields.hasErrors('chargeType')}"
+                        th:errors="*{chargeType}"
+                    ></span>
+                </div>
+                <div class="label">
+                    <label for="amount">月額料金</label>
+                </div>
+                <div class="input_item">
+                    <input type="number" th:field="*{amount}" />
+                    <span
+                        th:if="${#fields.hasErrors('amount')}"
+                        th:errors="*{amount}"
+                    ></span>
+                </div>
+                <div class="label">
+                    <label for="startDate">適用開始日</label>
+                </div>
+                <div class="input_item">
+                    <input
+                        type="date"
+                        th:field="*{startDate}"
+                        name="joining_date"
+                    />
+                    <span
+                        th:if="${#fields.hasErrors('startDate')}"
+                        th:errors="*{startDate}"
+                    ></span>
+                </div>
+                <div class="label">
+                    <label for="endDate">適用終了日</label>
+                </div>
+                <div class="input_item">
+                    <input type="date" th:field="*{endDate}" />
+                    <span
+                        th:if="${#fields.hasErrors('endDate')}"
+                        th:errors="*{endDate}"
+                    ></span>
+                </div>
+                <div class="label"></div>
+                <div class="input_item">
+                    <input type="submit" value="決定" />
+                    <a th:href="@{/charge/search}">キャンセル</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </html>

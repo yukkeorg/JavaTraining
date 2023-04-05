@@ -1,12 +1,10 @@
 <html th:fragment="layout(title, content)" lang="ja">
-<head th:replace="~{fragments/header :: common_header(${title})}">
-</head>
-<body>
-    <div class="container">
-        <main>
-            <div th:insert="${content}" class="inner">
-            </div>
-        </main>
-    </div>
-</body>
+    <head th:replace="~{fragments/header :: common_header(${title})}"> </head>
+    <body>
+        <div class="container">
+            <main>
+                <div th:insert="${content}" class="inner"></div>
+            </main>
+        </div>
+    </body>
 </html>
