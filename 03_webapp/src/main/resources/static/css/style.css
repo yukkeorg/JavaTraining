@@ -33,11 +33,10 @@ header .inner {
 
 header .title {
     font-size: 1.6rem;
-} 
+}
 
 aside {
     grid-area: sidebar;
-    
     height: 100%;
     background-color:antiquewhite;
 }
@@ -48,14 +47,20 @@ aside .inner {
 
 main {
     grid-area: main;
-
     width: 100%;
     background-color:azure;
 }
 
 main .inner {
     padding: 1rem;
+}
+
+main .search_inner {
     display: flex;
+}
+
+main .search_inner .half {
+    flex: 1;
 }
 
 main table {
@@ -85,3 +90,4 @@ main .form_wrapper {
 main .form_wrapper .label {
     padding-right: 1rem;
 }
+
