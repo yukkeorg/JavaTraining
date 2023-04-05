@@ -68,10 +68,4 @@ public class Charge {
     @LastModifiedDate
     @Column(name = "updated_date")
     private Date updatedDate;
-
-    // // for
-    // @Override
-    // public Integer getId() {
-    // return chargeId;
-    // }
 }
