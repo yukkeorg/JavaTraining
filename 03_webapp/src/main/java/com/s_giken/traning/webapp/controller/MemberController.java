@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.s_giken.traning.webapp.exception.DataNotFoundException;
+import com.s_giken.traning.webapp.exception.NotFoundException;
 import com.s_giken.traning.webapp.model.Member;
 import com.s_giken.traning.webapp.model.MemberSearchCondition;
 import com.s_giken.traning.webapp.service.MemberService;
@@ -40,7 +40,7 @@ public class MemberController {
 	public String editMember(@PathVariable int id, Model model) {
 		var member = memberService.findById(id);
 		if (!member.isPresent()) {
-			throw new DataNotFoundException("");
+			throw new NotFoundException("");
 		}
 		model.addAttribute("member", member);
 		return "member_edit";

@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
-import com.s_giken.traning.webapp.exception.DataNotFoundException;
+import com.s_giken.traning.webapp.exception.NotFoundException;
 import com.s_giken.traning.webapp.model.Charge;
 import com.s_giken.traning.webapp.model.ChargeSearchCondition;
 import com.s_giken.traning.webapp.service.ChargeService;
@@ -44,7 +44,7 @@ public class ChargeController {
 			Model model) {
 		var charge = chargeService.findById(id);
 		if (!charge.isPresent()) {
-			throw new DataNotFoundException("");
+			throw new NotFoundException("chargeId is not found.");
 		}
 		model.addAttribute("message", message);
 		model.addAttribute("charge", charge);
@@ -72,7 +72,7 @@ public class ChargeController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		if (!chargeService.findById(id).isPresent()) {
-			throw new DataNotFoundException("");
+			throw new NotFoundException("");
 		}
 		chargeService.deleteById(id);
 		redirectAttributes.addFlashAttribute("message", "削除しました");
