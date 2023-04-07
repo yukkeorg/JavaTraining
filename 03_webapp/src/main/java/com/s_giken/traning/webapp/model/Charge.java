@@ -62,10 +62,10 @@ public class Charge {
     private Date endDate;
 
     @CreatedDate
-    @Column(name = "created_date")
-    private Date createdDate;
+    @Column(name = "created_at")
+    private TimeStamp createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_date")
-    private Date updatedDate;
+    @Column(name = "updated_at")
+    private TimeStamp updatedAt;
 }
