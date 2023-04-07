@@ -1,5 +1,6 @@
 package com.s_giken.traning.webapp.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -63,9 +64,9 @@ public class Charge {
 
     @CreatedDate
     @Column(name = "created_at")
-    private TimeStamp createdAt;
+    private Timestamp createdAt;
 
     @LastModifiedDate
     @Column(name = "updated_at")
-    private TimeStamp updatedAt;
+    private Timestamp updatedAt;
 }
