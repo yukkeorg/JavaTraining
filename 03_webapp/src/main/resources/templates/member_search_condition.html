@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html
-    th:replace="~{layout/app :: layout('加入者検索', ~{::content})}"
-    lang="ja"
->
-    <div th:fragment="content">
-        <div class="search_inner">
-            <div class="half">
-                <form th:action="@{/member/search}"
-                      th:object="${memberSearchCondition}"
-                      method="POST">
-                    <div class="form_wrapper">
-                        <div class="label">
-                            <label for="cond_id">メールアドレス</label>
-                        </div>
-                        <div class="input_item">
-                            <input type="text" th:field="*{mail}" />
-                        </div>
-                        <div class="label"><label for="cond_name">氏名</label></div>
-                        <div class="input_item">
-                            <input type="text" th:field="*{name}" />
-                        </div>
-                        <div class="label"></div>
-                        <div class="input_item">
-                            <input type="submit" value="検索" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="half">
-                <a th:href="@{/member/add}">追加</a>
+<html th:replace="~{layout/app :: layout('加入者検索', ~{::content})}" lang="ja">
+<div th:fragment="content">
+    <form th:action="@{/member/search}" th:object="${memberSearchCondition}" method="POST">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label" for="mail">メールアドレス</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{mail}" />
             </div>
         </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label" for="name">氏名</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{name}" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="input_item">
+                <input class="btn btn-primary mb-3" type="submit" value="検索" />
+            </div>
+        </div>
+    </form>
+    <div class="md-12">
+        <a class="btn btn-secondary" th:href="@{/member/add}">追加</a>
     </div>
+</div>
+
 </html>
