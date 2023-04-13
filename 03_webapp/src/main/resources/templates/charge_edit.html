@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/app :: layout('料金編集', ~{::content})}" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/app :: layout('料金編集', ~{::content}, 'charge')}"
+    lang="ja">
 <div th:fragment="content">
     <div th:if="!${#strings.isEmpty(message)}" class="alert alert-success">
         <span th:text="${message}"></span>
