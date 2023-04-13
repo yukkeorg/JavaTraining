@@ -7,9 +7,13 @@ import com.s_giken.traning.webapp.model.Member;
 import com.s_giken.traning.webapp.model.MemberSearchCondition;
 
 public interface MemberService {
-    List<Member> findAll();
+    public List<Member> findAll();
 
-    Optional<Member> findById(int memberId);
+    public Optional<Member> findById(int memberId);
 
-    List<Member> findByConditions(MemberSearchCondition memberSearchCondition);
+    public List<Member> findByConditions(MemberSearchCondition memberSearchCondition);
+
+    public void save(Member member);
+
+    public void deleteById(int memberId);
 }

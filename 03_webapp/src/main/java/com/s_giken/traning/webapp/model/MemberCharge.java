@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "member_charge")
+@Table(name = "t_member_charge")
 public class MemberCharge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

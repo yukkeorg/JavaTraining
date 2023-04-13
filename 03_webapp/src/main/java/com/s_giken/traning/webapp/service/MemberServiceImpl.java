@@ -32,4 +32,14 @@ public class MemberServiceImpl implements MemberService {
                 "%" + memberSearchCondition.getName() + "%",
                 "%" + memberSearchCondition.getMail() + "%");
     }
+
+    @Override
+    public void save(Member member) {
+        memberRepository.save(member);
+    }
+
+    @Override
+    public void deleteById(int memberId) {
+        memberRepository.deleteById(memberId);
+    }
 }
