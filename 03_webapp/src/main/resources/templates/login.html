@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/simple :: layout('ログイン', ~{::content}, 'charge')}" lang="ja">
+<div th:fragment="content">
+    <form action="@{/login}" method="POST">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label" for="mail">メールアドレス</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{mail}" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label" for="name">パスワード</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{password}" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="input_item">
+                <input class="btn btn-primary mb-3" type="submit" value="ログイン" />
+            </div>
+        </div>
+    </form>
+</div>
+
+</html>
