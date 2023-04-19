@@ -6,9 +6,14 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @RequestMapping("/")
-public class TopController {
+public class RootController {
 	@GetMapping("/")
 	public String hello() {
 		return "top";
+	}
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
 	}
 }
