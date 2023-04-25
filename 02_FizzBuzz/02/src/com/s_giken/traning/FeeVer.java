@@ -1,6 +1,6 @@
 package com.s_giken.traning;
 
-public class FeeVer implements IFizzBuzz {
+public class FeeVer implements IFizzBuzzFilter {
     @Override
     public String translate(int num) {
         String sNum = String.valueOf(num);

@@ -1,6 +1,6 @@
 package com.s_giken.traning;
 
-public class FizzBuzz implements IFizzBuzz {
+public class FizzBuzz implements IFizzBuzzFilter {
     @Override
     public String translate(int num) {
         if(num % 3 == 0 && num % 5 == 0) {

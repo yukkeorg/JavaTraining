@@ -1,5 +1,5 @@
 package com.s_giken.traning;
 
-public interface IFizzBuzz {
+public interface IFizzBuzzFilter {
     public String translate(int num);
 }
