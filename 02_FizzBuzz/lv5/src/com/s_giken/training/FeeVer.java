@@ -1,4 +1,4 @@
-package com.s_giken.traning;
+package com.s_giken.training;
 
 public class FeeVer implements IFizzBuzzFilter {
     @Override
@@ -7,7 +7,7 @@ public class FeeVer implements IFizzBuzzFilter {
 
         if (num % 7 == 0) {
             return "FeeVer";
-        } else if(sNum.contains("7")) {
+        } else if (sNum.contains("7")) {
             return "FeeVer";
         } else {
             return sNum;

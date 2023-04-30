@@ -1,8 +1,7 @@
-package com.s_giken.traning;
+package com.s_giken.training;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class FizzBuzzRunner {
     private int maxNum = 0;
@@ -18,10 +17,10 @@ public class FizzBuzzRunner {
 
     public void write() {
         for (var fizzBuzzFilter : fizzBuzzFilterList) {
-            for(var i = 1; i <= this.maxNum; i++) {
+            for (var i = 1; i <= this.maxNum; i++) {
                 System.out.print(fizzBuzzFilter.translate(i) + " ");
             }
             System.out.print("\n");
-        }    
+        }
     }
 }

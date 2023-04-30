@@ -1,4 +1,4 @@
-package com.s_giken.traning;
+package com.s_giken.training;
 
 import java.io.IOException;
 import java.io.PrintWriter;
