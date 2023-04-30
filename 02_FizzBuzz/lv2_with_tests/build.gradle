@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
 }
 
 repositories {
@@ -22,6 +23,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
 }
 
+ext {
+    mainClassPath = 'com.s_giken.traning.App'
+}
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
@@ -29,9 +34,17 @@ java {
     }
 }
 
+jar {
+    manifest {
+        attributes (
+            'Main-Class': mainClassPath
+        )
+    }
+}
+
 application {
     // Define the main class for the application.
-    mainClass = 'com.s_giken.traning.App'
+    mainClass = mainClassPath
 }
 
 test {
