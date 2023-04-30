@@ -1,11 +1,11 @@
-package com.s_giken.traning;
+package com.s_giken.training;
 
 public class App {
-    public static void main(String... args) throws Exception{
+    public static void main(String... args) throws Exception {
         IFizzBuzzFilter fizzBuzzFilter = new FizzBuzz();
-        for(var i = 1; i <= 100; i++) {
+        for (var i = 1; i <= 100; i++) {
             System.out.print(fizzBuzzFilter.translate(i) + " ");
         }
         System.out.print("\n");
-    }  
+    }
 }

@@ -1,4 +1,4 @@
-package com.s_giken.traning;
+package com.s_giken.training;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
