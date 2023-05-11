@@ -2,7 +2,7 @@
 
 ## ユースケース
 
-<img src="media/image1.png" style="width:5.90556in;height:6.04931in" />
+![](design/media/image1.png)
 
 ### 加入者情報管理機能
 
@@ -293,8 +293,7 @@
 </tr>
 <tr class="even">
 <td>拡張シナリオ</td>
-<td>2a.
-処理中にエラーが発生した場合は中断し、トランザクションを破棄する。</td>
+<td>2a. 処理中にエラーが発生した場合は中断し、トランザクションを破棄する。</td>
 </tr>
 <tr class="odd">
 <td>成功時保障</td>
@@ -305,16 +304,15 @@
 
 ## 概念モデル
 
-<img src="media/image3.png" style="width:5.76042in;height:4.07292in" />
+![](design/media/image3.png)
 
-ソース：[Java研修.drawio](https://sgiken365-my.sharepoint.com/:u:/g/personal/ooshima_s-giken_com/Ea9zT-NOwGpBlvgb5fFbQzIBi0iTYcZgAMtMoeQRBtbiRA?e=YLqOEB)
-→ 概念モデルシート
+ソース：[Java研修.drawio](https://sgiken365-my.sharepoint.com/:u:/g/personal/ooshima_s-giken_com/Ea9zT-NOwGpBlvgb5fFbQzIBi0iTYcZgAMtMoeQRBtbiRA?e=YLqOEB) → 概念モデルシート
 
 # 外部設計
 
 ## サービス管理システムの関係性
 
-<img src="media/image5.png" style="width:4.71724in;height:0.69616in" />
+![](design/media/image5.png)
 
 - 全ての情報は、サービス管理データベース(K_SRVMAN)の各テーブルに格納される。
 
@@ -324,7 +322,7 @@
 
 ## サービス管理アプリケーションのフロー
 
-<img src="media/image7.png" style="width:5.90556in;height:3.14861in" />
+![](design/media/image7.png)
 
 - 未ログインの場合は、各画面を表示する前にログイン画面を表示する。
 
@@ -336,8 +334,6 @@
 
 本システムのクライアントにはWebブラウザを用いる。
 
-表 -
-
 | 対応ブラウザ     | 最新のMicrosoft Edge、Google Chrome、Firefox |
 |------------------|----------------------------------------------|
 | 画面レイアウト幅 | ブラウザに合わせて可変とする。               |
@@ -347,19 +343,15 @@
 
 本システムの画面レイアウトは、次の通りとする。(背景色は領域を表す)
 
-表 -
-
 | ヘッダー     | システムロゴ、機能メニュー、ログイン名を表示します |
 |--------------|----------------------------------------------------|
 | 機能メニュー | 各機能へのリンク                                   |
 | タイトル     | 機能のタイトルを表示                               |
 | ボディ       | 各機能のコンテンツやフォームを表示します           |
 
-<img src="media/image9.png" style="width:5.78368in;height:4.32075in" />
+![](design/media/image9.png)
 
 ### 画面機能レイアウトパターン
-
-表 -
 
 | 検索条件入力画面 | 情報を検索する際の条件を入力する画面パターン |
 |------------------|----------------------------------------------|
@@ -368,7 +360,7 @@
 
 #### 検索条件入力画面
 
-<img src="media/image11.png" style="width:5.90556in;height:1.67778in" />
+![](design/media/image11.png)
 
 - 左側に検索条件としたい項目を、項目名と入力欄でセットとして、1セットずつ表示し、最後に検索ボタンを表示する。
 
@@ -376,7 +368,7 @@
 
 #### 検索結果一覧画面
 
-<img src="media/image13.png" style="width:5.90556in;height:3.29514in" />
+![](design/media/image13.png)
 
 - 検索条件に一致する結果から、表示する項目を1レコードずつ表形式で表示する。
 
@@ -384,7 +376,7 @@
 
 #### 情報編集画面
 
-<img src="media/image15.png" style="width:5.90556in;height:3.52847in" />
+![](design/media/image15.png)
 
 - 編集対象となる情報の項目を、項目名と適切な入力欄とセットにして、1行に1セット表示する。
 
@@ -394,13 +386,11 @@
 
 本システム内で使用される情報の各項目における入力時、表示時の取扱いについては次の通りとする。
 
-表 -
-
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 10%" />
-<col style="width: 70%" />
+<col style="width: 19%" />
+<col style="width: 8%" />
+<col style="width: 71%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -462,8 +452,9 @@
 <td>入力</td>
 <td><p>チェックボックスのリストで入力する。</p>
 <p>オプション料金は併せて、適用開始日と適用終了日をテキストまたは、カレンダーピックで入力する。</p>
-<p><img src="media/image17.png"
-style="width:2.70139in;height:0.47745in" /></p></td>
+<p>
+![](design/media/image19.png)
+</p></td>
 </tr>
 <tr class="even">
 <td>表示</td>
@@ -578,13 +569,13 @@ style="width:2.70139in;height:0.47745in" /></p></td>
 
 ### ジョブフロー
 
-<img src="media/image19.png" style="width:3.32292in;height:2.94792in" />
+![](design/media/image19.png)
 
 ## データベース設計
 
 ### ER図
 
-<img src="media/image21.png" style="width:5.90556in;height:4.45764in" />
+![](design/media/image21.png)
 
 ### テーブル定義
 
