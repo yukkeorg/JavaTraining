@@ -12,7 +12,6 @@ import com.s_giken.training.webapp.model.Member;
 import com.s_giken.training.webapp.model.MemberSearchCondition;
 import com.s_giken.training.webapp.service.MemberService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +20,11 @@ import org.springframework.validation.annotation.Validated;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	@Autowired
 	private MemberService memberService;
+
+	public MemberController(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	@GetMapping("/search")
 	public String showSearchCondition(Model model) {

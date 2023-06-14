@@ -12,7 +12,6 @@ import com.s_giken.training.webapp.model.Charge;
 import com.s_giken.training.webapp.model.ChargeSearchCondition;
 import com.s_giken.training.webapp.service.ChargeService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +20,11 @@ import org.springframework.validation.annotation.Validated;
 @Controller
 @RequestMapping("/charge")
 public class ChargeController {
-	@Autowired
 	private ChargeService chargeService;
+
+	public ChargeController(ChargeService chargeService) {
+		this.chargeService = chargeService;
+	}
 
 	@GetMapping("/search")
 	public String showSearchCondition(Model model) {
