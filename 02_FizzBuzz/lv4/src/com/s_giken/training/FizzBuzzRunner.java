@@ -15,7 +15,7 @@ public class FizzBuzzRunner {
         fizzBuzzFilterList.add(fizzBuzzFilter);
     }
 
-    public void write() {
+    public void display() {
         for (var fizzBuzzFilter : fizzBuzzFilterList) {
             for (var i = 1; i <= this.maxNum; i++) {
                 System.out.print(fizzBuzzFilter.translate(i) + " ");
