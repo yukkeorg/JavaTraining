@@ -43,7 +43,8 @@ public class ChargeController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable int id, @ModelAttribute("message") String message,
+	public String edit(
+			@PathVariable int id, @ModelAttribute("message") String message,
 			Model model) {
 		var charge = chargeService.findById(id);
 		if (!charge.isPresent()) {
