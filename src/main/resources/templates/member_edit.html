@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/app :: layout('加入者編集', ~{::content}, 'member')}">
 <div th:fragment="content">
+    <div th:if="!${#strings.isEmpty(message)}" class="alert alert-success">
+        <span th:text="${message}"></span>
+    </div>
     <form th:action="@{/member/save}" th:object="${member}" method="POST">
         <input type="hidden" th:field="*{memberId}">
         <div class="mb-3 row">
@@ -55,7 +58,7 @@
         </div>
         <div class="mb-3">
             <input class="btn btn-primary mb-3" type="submit" value="決定" />
-            <a class="btn btn-link" th:href="@{member/search}">キャンセル</a>
+            <a class="btn btn-link" th:href="@{/member/search}">キャンセル</a>
         </div>
     </form>
 </div>
