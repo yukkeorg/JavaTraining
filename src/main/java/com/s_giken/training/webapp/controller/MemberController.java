@@ -43,7 +43,9 @@ public class MemberController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public String editMember(@PathVariable int id, Model model) {
+	public String editMember(
+			@PathVariable int id,
+			Model model) {
 		var member = memberService.findById(id);
 		if (!member.isPresent()) {
 			throw new NotFoundException("");
@@ -60,7 +62,9 @@ public class MemberController {
 	}
 
 	@PostMapping("/save")
-	public String saveMember(@Validated Member member, BindingResult bindingResult,
+	public String saveMember(
+			@Validated Member member,
+			BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return "member_edit";
@@ -71,7 +75,9 @@ public class MemberController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String deleteMember(@PathVariable int id, RedirectAttributes redirectAttributes) {
+	public String deleteMember(
+			@PathVariable int id,
+			RedirectAttributes redirectAttributes) {
 		memberService.deleteById(id);
 		redirectAttributes.addFlashAttribute("message", "削除しました。");
 		return "redirect:/member/search";

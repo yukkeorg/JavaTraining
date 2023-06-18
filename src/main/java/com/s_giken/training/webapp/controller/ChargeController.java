@@ -44,7 +44,8 @@ public class ChargeController {
 
 	@GetMapping("/edit/{id}")
 	public String edit(
-			@PathVariable int id, @ModelAttribute("message") String message,
+			@PathVariable int id,
+			@ModelAttribute("message") String message,
 			Model model) {
 		var charge = chargeService.findById(id);
 		if (!charge.isPresent()) {
@@ -63,7 +64,9 @@ public class ChargeController {
 	}
 
 	@PostMapping("/save")
-	public String save(@Validated Charge charge, BindingResult bindingResult,
+	public String save(
+			@Validated Charge charge,
+			BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return "charge_edit";
@@ -74,7 +77,9 @@ public class ChargeController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
+	public String delete(
+			@PathVariable int id,
+			RedirectAttributes redirectAttributes) {
 		if (!chargeService.findById(id).isPresent()) {
 			throw new NotFoundException("");
 		}
