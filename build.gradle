@@ -5,7 +5,7 @@ plugins {
 	id 'org.graalvm.buildtools.native' version '0.9.18'
 }
 
-group = 'com.s_giken.traning'
+group = 'com.s_giken.training'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
