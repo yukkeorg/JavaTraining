@@ -22,7 +22,7 @@ import org.springframework.validation.annotation.Validated;
 public class MemberController {
 	private MemberService memberService;
 
-	public MemberController(MemberService memberService) {
+	public MemberController(MemberService memberService) { // memberServcieには、MemberServiceImplのインスタンスが渡される
 		this.memberService = memberService;
 	}
 

@@ -22,7 +22,7 @@ import org.springframework.validation.annotation.Validated;
 public class ChargeController {
 	private ChargeService chargeService;
 
-	public ChargeController(ChargeService chargeService) {
+	public ChargeController(ChargeService chargeService) { // chargeServiceには、ChargeServiceImplのインスタンスが渡される
 		this.chargeService = chargeService;
 	}
 
