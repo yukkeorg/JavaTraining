@@ -30,6 +30,11 @@
                             th:href="@{/charge/search}">課金情報管理</a>
                     </li>
                 </ul>
+                <ul sec:authorize="authenticated" class="navbar-nav">
+                    <li class="nav-item mr-auto">
+                        <a class="nav-link" href="#" th:href="@{/logout}">ログアウト</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
