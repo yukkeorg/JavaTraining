@@ -11,7 +11,7 @@ public interface ChargeService {
 
     public Optional<Charge> findById(int chargeId);
 
-    public List<Charge> findByCondition(ChargeSearchCondition condition);
+    public List<Charge> findByCondition(final ChargeSearchCondition condition);
 
     public void save(Charge charge);
 
