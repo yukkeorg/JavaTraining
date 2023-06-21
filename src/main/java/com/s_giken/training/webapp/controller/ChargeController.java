@@ -20,7 +20,7 @@ import org.springframework.validation.annotation.Validated;
 @Controller
 @RequestMapping("/charge")
 public class ChargeController {
-	private ChargeService chargeService;
+	private final ChargeService chargeService;
 
 	public ChargeController(ChargeService chargeService) { // chargeServiceには、ChargeServiceImplのインスタンスが渡される
 		this.chargeService = chargeService;

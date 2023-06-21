@@ -20,7 +20,7 @@ import org.springframework.validation.annotation.Validated;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	private MemberService memberService;
+	private final MemberService memberService;
 
 	public MemberController(MemberService memberService) { // memberServcieには、MemberServiceImplのインスタンスが渡される
 		this.memberService = memberService;

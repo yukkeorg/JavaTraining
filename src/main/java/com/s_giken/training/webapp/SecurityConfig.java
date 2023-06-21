@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class WebSecurityConfig {
+public class SecurityConfig {
     // Spring Securityの設定
     // ルート以下のアクセスは認証が必要
     // ログインページはカスタムの /login
