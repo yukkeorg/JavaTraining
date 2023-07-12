@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/app :: layout('加入者検索結果', ~{::content}, 'member')}">
 <div th:fragment="content">
+    <!--/*
+        加入者情報検索結果表示画面
+    */-->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -24,6 +27,11 @@
                 <td th:text="${row.startDate}"></td>
                 <td th:text="${row.endDate}"></td>
                 <td th:text="${row.paymentMethod}"></td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(result)}">
+                <td colspan="7">
+                    <div class="text-center lh-lg">該当する情報が見つかりませんでした。</div>
+                </td>
             </tr>
         </tbody>
     </table>
