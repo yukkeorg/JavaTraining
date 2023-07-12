@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<Member> findByConditions(MemberSearchCondition memberSearchCondition) {
-        return memberRepository.findByNameLikeOrMailLike(
+        return memberRepository.findByNameLikeAndMailLike(
                 "%" + memberSearchCondition.getName() + "%",
                 "%" + memberSearchCondition.getMail() + "%");
     }
