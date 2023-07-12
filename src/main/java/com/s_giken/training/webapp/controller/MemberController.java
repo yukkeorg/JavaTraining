@@ -37,7 +37,7 @@ public class MemberController {
 	public String searchAndListing(
 			@ModelAttribute("memberSearchCondition") MemberSearchCondition memberSearchCodition,
 			Model model) {
-		var result = memberService.findAll();
+		var result = memberService.findByConditions(memberSearchCodition);
 		model.addAttribute("result", result);
 		return "member_search_result";
 	}
