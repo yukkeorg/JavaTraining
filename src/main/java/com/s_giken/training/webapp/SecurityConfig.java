@@ -22,7 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() // CSRF対策を無効化
+                .csrf(csrf -> csrf.disable()) // CSRF対策を無効化
                 .formLogin((form) -> form
                         .defaultSuccessUrl("/")
                         .loginProcessingUrl("/login")
