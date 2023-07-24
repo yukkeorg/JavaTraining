@@ -12,5 +12,6 @@
     "editor.formatOnSave": true,
     "spring-boot.ls.problem.version-validation.UPDATE_LATEST_MINOR_VERSION": "IGNORE",
     "spring-boot.ls.problem.version-validation.UPDATE_LATEST_PATCH_VERSION": "INFO",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
