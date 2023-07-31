@@ -23,5 +23,6 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
      */
 
     public List<Member> findByMailLike(String name);
-    public List<Member> findByNameLikeOrMailLike(String name, String mail);
+
+    public List<Member> findByNameLikeAndMailLike(String name, String mail);
 }
