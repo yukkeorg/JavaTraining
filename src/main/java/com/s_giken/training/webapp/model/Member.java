@@ -19,6 +19,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 会員情報エンティティ
+ */
 @Entity // エンティティクラスであることを示す
 @Table(name = "T_MEMBER") // 対応するデータベーステーブル名
 @Data // メンバー変数に対するゲッター・セッターを自動生成

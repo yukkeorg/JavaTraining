@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 課金情報検索条件エンティティ
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

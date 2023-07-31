@@ -18,6 +18,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 会員課金情報エンティティ
+ */
 @Entity
 @Data
 @NoArgsConstructor

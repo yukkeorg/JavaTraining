@@ -17,15 +17,29 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
+/**
+ * 課金情報コントローラ
+ */
 @Controller
 @RequestMapping("/charge")
 public class ChargeController {
 	private final ChargeService chargeService;
 
-	public ChargeController(ChargeService chargeService) { // chargeServiceには、ChargeServiceImplのインスタンスが渡される
+	/**
+	 * コンストラクタ
+	 * 
+	 * @param chargeService 課金情報サービスオブジェクト(Springから自動的にインスタンスが渡される)
+	 */
+	public ChargeController(ChargeService chargeService) {
 		this.chargeService = chargeService;
 	}
 
+	/**
+	 * 検索条件画面表示
+	 * 
+	 * @param model Thymeleafに渡すデータを保持するオブジェクト
+	 * @return 検索条件画面のテンプレート名
+	 */
 	@GetMapping("/search")
 	public String showSearchCondition(Model model) {
 		var chargeSearchCondition = new ChargeSearchCondition();
@@ -33,6 +47,13 @@ public class ChargeController {
 		return "charge_search_condition";
 	}
 
+	/**
+	 * 検索結果画面表示
+	 * 
+	 * @param chargeSearchCodition 検索条件
+	 * @param model                Thymeleafに渡すデータを保持するオブジェクト
+	 * @return 検索結果画面のテンプレート名
+	 */
 	@PostMapping("/search")
 	public String searchAndListing(
 			@ModelAttribute("chargeSearchCondition") ChargeSearchCondition chargeSearchCodition,
@@ -42,6 +63,14 @@ public class ChargeController {
 		return "charge_search_result";
 	}
 
+	/**
+	 * 課金情報編集画面表示
+	 * 
+	 * @param id      課金情報ID
+	 * @param message メッセージ
+	 * @param model   Thymeleafに渡すデータを保持するオブジェクト
+	 * @return 課金情報編集画面のテンプレート名
+	 */
 	@GetMapping("/edit/{id}")
 	public String edit(
 			@PathVariable int id,
@@ -56,6 +85,12 @@ public class ChargeController {
 		return "charge_edit";
 	}
 
+	/**
+	 * 課金情報追加画面表示
+	 * 
+	 * @param model Thymeleafに渡すデータを保持するオブジェクト
+	 * @return 課金情報追加画面のテンプレート名
+	 */
 	@GetMapping("/add")
 	public String add(Model model) {
 		var charge = new Charge();
@@ -63,6 +98,14 @@ public class ChargeController {
 		return "charge_edit";
 	}
 
+	/**
+	 * 課金情報保存
+	 * 
+	 * @param charge             バリデーション済み課金情報
+	 * @param bindingResult      バインド結果
+	 * @param redirectAttributes リダイレクト先に渡すデータを保持するオブジェクト
+	 * @return リダイレクト先のURL
+	 */
 	@PostMapping("/save")
 	public String save(
 			@Validated Charge charge,
@@ -76,6 +119,13 @@ public class ChargeController {
 		return "redirect:/charge/edit/" + charge.getChargeId();
 	}
 
+	/**
+	 * 課金情報削除
+	 * 
+	 * @param id                 課金情報ID
+	 * @param redirectAttributes リダイレクト先に渡すデータを保持するオブジェクト
+	 * @return リダイレクト先のURL
+	 */
 	@GetMapping("/delete/{id}")
 	public String delete(
 			@PathVariable int id,
