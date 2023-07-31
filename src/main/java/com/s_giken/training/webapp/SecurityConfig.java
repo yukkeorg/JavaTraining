@@ -12,13 +12,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Spring Securityの設定クラス
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    // Spring Securityの設定
-    // ルート以下のアクセスは認証が必要
-    // ログインページはカスタムの /login
+    /**
+     * Spring Securityの設定
+     * ルート以下のアクセスは認証が必要
+     * ログインページはカスタムの /login
+     * 
+     * @param http HttpSecurityオブジェクト
+     * @return SecurityFilterChainオブジェクト
+     * @throws Exception 例外全般
+     */
     @Bean
     public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -37,9 +46,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // ログリンユーザー情報を設定する
-    // ユーザ名user、パスワードpasswordでログインできるようになる。
-    // ※パスワードはハッシュ化せずにそのまま設定
+    /**
+     * ログインユーザー情報を設定する
+     * ユーザ名user、パスワードpasswordでログインできるようになる。
+     * ※パスワードはハッシュ化せずにそのまま設定
+     * 
+     * @return ログインユーザー情報
+     */
     @Bean
     public UserDetailsService users() {
         var user = User
@@ -51,7 +64,11 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user);
     }
 
-    // ログインフォーム等から送られてくるパスワードをハッシュ化する
+    /**
+     * パスワードをBcryptでハッシュ化するオブジェクトを生成する
+     * 
+     * @return パスワードをハッシュ化するエンコーダーのオブジェクト
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
