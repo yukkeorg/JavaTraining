@@ -44,12 +44,6 @@ public class Charge {
     @NotBlank
     private String name;
 
-    @Column(name = "chage_type")
-    @Min(1)
-    @Max(2)
-    @NotNull
-    private Integer chargeType;
-
     @Column(name = "amount")
     @Min(value = 0, message = "0以上の整数を入力して下さい")
     @Max(value = 999999, message = "999999以下の整数を入力してください")

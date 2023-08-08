@@ -6,8 +6,7 @@
             <tr>
                 <td scppe="col">料金ID</td>
                 <td scppe="col">料金名</td>
-                <td scppe="col">料金種別</td>
-                <td scppe="col">料金</td>
+                <td scppe="col">月額料金</td>
                 <td scppe="col">適用開始日</td>
                 <td scppe="col">適用終了日</td>
             </tr>
@@ -18,7 +17,6 @@
                     <a th:href="@{/charge/edit/{id}(id=${row.chargeId})}" th:text="${row.chargeId}"></a>
                 </td>
                 <td th:text="${row.name}"></td>
-                <td th:text="${row.chargeType}"></td>
                 <td th:text="${row.amount}"></td>
                 <td th:text="${#dates.format(row.startDate, 'yyyy/MM/dd')}"></td>
                 <td th:text="${#dates.format(row.endDate, 'yyyy/MM/dd')}"></td>
