@@ -45,8 +45,8 @@ public class Charge {
     private String name;
 
     @Column(name = "amount")
-    @Min(value = 0, message = "0以上の整数を入力して下さい")
-    @Max(value = 999999, message = "999999以下の整数を入力してください")
+    @Min(value = 0)
+    @Max(value = 999999)
     @NotNull
     private Integer amount;
 
