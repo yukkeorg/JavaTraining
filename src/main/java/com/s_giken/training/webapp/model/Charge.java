@@ -1,5 +1,6 @@
 package com.s_giken.training.webapp.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -44,11 +46,12 @@ public class Charge {
     @NotBlank
     private String name;
 
-    @Column(name = "amount")
-    @Min(value = 0)
-    @Max(value = 999999)
+    @Column(name = "amount", precision = 9, scale = 2)
+    @Digits(integer = 9, fraction = 0)
+    @Min(value = -999999999)
+    @Max(value = 999999999)
     @NotNull
-    private Integer amount;
+    private BigDecimal amount;
 
     @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
