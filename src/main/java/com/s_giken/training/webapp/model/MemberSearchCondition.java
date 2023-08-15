@@ -15,4 +15,9 @@ public class MemberSearchCondition {
     private String mail;
     // 氏名検索用
     private String name;
+    // 有効な加入者
+    private Boolean isAvailable;
+    private String radioAvailable;
+    private String selectAvailable;
+
 }

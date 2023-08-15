@@ -3,6 +3,7 @@ package com.s_giken.training.webapp.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.s_giken.training.webapp.model.Member;
 
@@ -25,4 +26,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     public List<Member> findByMailLike(String name);
 
     public List<Member> findByNameLikeAndMailLike(String name, String mail);
+
+    @Query("select m from Member m where m.name like ?1 and m.mail like ?2 and m.startDate <= current_date and (m.endDate is null or current_date <= m.endDate)")
+    public List<Member> findByNameLikeAndMailLikeWithAvailable(String name, String mail);
 }
