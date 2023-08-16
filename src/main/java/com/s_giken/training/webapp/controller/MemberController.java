@@ -78,6 +78,7 @@ public class MemberController {
 		if (!member.isPresent()) {
 			throw new NotFoundException("");
 		}
+		model.addAttribute("memberId", id);
 		model.addAttribute("member", member);
 		return "member_edit";
 	}
