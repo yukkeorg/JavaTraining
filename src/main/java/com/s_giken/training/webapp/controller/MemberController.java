@@ -128,6 +128,11 @@ public class MemberController {
 	public String deleteMember(
 			@PathVariable int id,
 			RedirectAttributes redirectAttributes) {
+		var member = memberService.findById(id);
+		if (!member.isPresent()) {
+			throw new NotFoundException(String.format("指定したmemberId(%d)の加入者情報が存在しません。", id));
+		}
+
 		memberService.deleteById(id);
 		redirectAttributes.addFlashAttribute("message", String.format("Id:%dを削除しました。", id));
 		return "redirect:/member/search";
