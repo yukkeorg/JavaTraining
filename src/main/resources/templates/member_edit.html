@@ -58,7 +58,7 @@
                 <button type="submit" class="btn btn-primary">決定</button>
                 <a class="btn btn-link" th:href="@{/member/search}">キャンセル</a>
             </div>
-            <div class="col-sm-auto">
+            <div class="col-sm-auto" th:if="${memberId != null}">
                 <a class="btn btn-danger" id="delete" th:href="@{/member/delete/{id}(id=${memberId})}">削除</a>
             </div>
         </div>
