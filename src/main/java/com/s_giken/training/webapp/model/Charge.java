@@ -22,14 +22,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
  * 課金情報エンティティ
  */
 @Entity
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "T_CHARGE")
 @Data
 @NoArgsConstructor
