@@ -57,7 +57,6 @@ public class MemberController {
 	@PostMapping("/search")
 	public String searchAndListing(
 			@ModelAttribute("memberSearchCondition") MemberSearchCondition memberSearchCodition,
-			@ModelAttribute("message") String message,
 			Model model) {
 		var result = memberService.findByConditions(memberSearchCodition);
 		model.addAttribute("result", result);
