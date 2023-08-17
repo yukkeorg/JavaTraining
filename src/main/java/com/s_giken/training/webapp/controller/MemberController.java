@@ -129,7 +129,7 @@ public class MemberController {
 			@PathVariable int id,
 			RedirectAttributes redirectAttributes) {
 		memberService.deleteById(id);
-		redirectAttributes.addFlashAttribute("message", "削除しました。");
+		redirectAttributes.addFlashAttribute("message", String.format("Id:%dを削除しました。", id));
 		return "redirect:/member/search";
 	}
 }

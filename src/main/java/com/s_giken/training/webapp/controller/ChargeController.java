@@ -132,8 +132,11 @@ public class ChargeController {
 		if (!chargeService.findById(id).isPresent()) {
 			throw new NotFoundException("");
 		}
+
 		chargeService.deleteById(id);
-		redirectAttributes.addFlashAttribute("message", "削除しました");
+
+		redirectAttributes.addFlashAttribute("message", String.format("Id:%d を削除しました", id));
+
 		return "redirect:/charge/search";
 	}
 }
