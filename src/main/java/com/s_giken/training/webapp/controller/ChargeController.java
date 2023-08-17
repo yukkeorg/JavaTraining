@@ -77,7 +77,7 @@ public class ChargeController {
 			Model model) {
 		var charge = chargeService.findById(id);
 		if (!charge.isPresent()) {
-			throw new NotFoundException("chargeId is not found.");
+			throw new NotFoundException(String.format("指定したchargeId(%d)の料金情報が存在しません。", id));
 		}
 		model.addAttribute("chargeId", id);
 		model.addAttribute("charge", charge);
@@ -130,7 +130,7 @@ public class ChargeController {
 			@PathVariable int id,
 			RedirectAttributes redirectAttributes) {
 		if (!chargeService.findById(id).isPresent()) {
-			throw new NotFoundException("");
+			throw new NotFoundException(String.format("指定したchargeId(%d)の料金情報が存在しません。", id));
 		}
 
 		chargeService.deleteById(id);
