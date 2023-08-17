@@ -51,7 +51,7 @@ public class ChargeController {
 	 * 検索結果画面表示
 	 * 
 	 * @param chargeSearchCodition 検索条件
-	 * @param model                Thymeleafに渡すデータを保持するオブジェクト
+	 * @param model Thymeleafに渡すデータを保持するオブジェクト
 	 * @return 検索結果画面のテンプレート名
 	 */
 	@PostMapping("/search")
@@ -66,21 +66,20 @@ public class ChargeController {
 	/**
 	 * 課金情報編集画面表示
 	 * 
-	 * @param id      課金情報ID
+	 * @param id 課金情報ID
 	 * @param message メッセージ
-	 * @param model   Thymeleafに渡すデータを保持するオブジェクト
+	 * @param model Thymeleafに渡すデータを保持するオブジェクト
 	 * @return 課金情報編集画面のテンプレート名
 	 */
 	@GetMapping("/edit/{id}")
 	public String edit(
 			@PathVariable int id,
-			@ModelAttribute("message") String message,
 			Model model) {
 		var charge = chargeService.findById(id);
 		if (!charge.isPresent()) {
 			throw new NotFoundException("chargeId is not found.");
 		}
-		model.addAttribute("message", message);
+		model.addAttribute("chargeId", id);
 		model.addAttribute("charge", charge);
 		return "charge_edit";
 	}
@@ -101,8 +100,8 @@ public class ChargeController {
 	/**
 	 * 課金情報保存
 	 * 
-	 * @param charge             バリデーション済み課金情報
-	 * @param bindingResult      バインド結果
+	 * @param charge バリデーション済み課金情報
+	 * @param bindingResult バインド結果
 	 * @param redirectAttributes リダイレクト先に渡すデータを保持するオブジェクト
 	 * @return リダイレクト先のURL
 	 */
@@ -122,7 +121,7 @@ public class ChargeController {
 	/**
 	 * 課金情報削除
 	 * 
-	 * @param id                 課金情報ID
+	 * @param id 課金情報ID
 	 * @param redirectAttributes リダイレクト先に渡すデータを保持するオブジェクト
 	 * @return リダイレクト先のURL
 	 */
