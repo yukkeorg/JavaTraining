@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BatchApplication",
+            "request": "launch",
+            "mainClass": "com.s_giken.training.batch.BatchApplication",
+            "projectName": "batch"
+        },
+        {
+            "type": "java",
             "name": "WebappApplication",
             "request": "launch",
             "mainClass": "com.s_giken.training.webapp.WebappApplication",
