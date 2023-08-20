@@ -34,7 +34,7 @@ public class BatchApplication implements CommandLineRunner {
 
 			try {
 				targetYm = this.parseArgs(args);
-			} catch(Exception e) {
+			} catch (Exception e) {
 				logger.error("コマンドライン引数が不正です: " + e.toString());
 				return;
 			}
@@ -52,7 +52,9 @@ public class BatchApplication implements CommandLineRunner {
 
 		// 請求データを作成してよい対象年月か確認
 		logger.info(String.format("%s分の請求情報を確認しています。", targetYmStr));
-		Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM T_BILLING_STATUS WHERE billing_ym = ? and is_commit = true", Integer.class, targetYm);
+		Integer count = jdbcTemplate.queryForObject(
+				"SELECT COUNT(*) FROM T_BILLING_STATUS WHERE billing_ym = ? and is_commit = true",
+				Integer.class, targetYm);
 		if (count != 0) {
 			logger.info(String.format("%s分の請求情報はすでに確定しています。", targetYmStr));
 			return;
@@ -67,56 +69,57 @@ public class BatchApplication implements CommandLineRunner {
 
 		// 請求ステータスのデータの作成と挿入
 		logger.info(String.format("%s分の請求ステータスを追加しています。", targetYmStr));
-		processedCount = jdbcTemplate.update("INSERT INTO T_BILLING_STATUS(billing_ym, is_commit) VALUES (?, false)", targetYm);
-		logger.info(String.format("%d件削除しました。", processedCount));
-		
+		processedCount = jdbcTemplate.update(
+				"INSERT INTO T_BILLING_STATUS(billing_ym, is_commit) VALUES (?, false)", targetYm);
+		logger.info(String.format("%d件追加しました。", processedCount));
+
 		// 請求データの作成と挿入
 		logger.info(String.format("%s分の請求データを追加しています。", targetYmStr));
 		sql = """
-		  INSERT INTO T_BILLING_DATA (
-			billing_ym,
-			member_id,
-			mail,
-			name,
-			address,
-			start_date,
-			end_date,
-			payment_method,
-			amount,
-			tax_ratio,
-			total)
-		  SELECT 
-			billing_ym,
-			member_id,
-			mail,
-			name,
-			address,
-			start_date,
-			end_date,
-			payment_method,
-			sum_amount,
-			tax_ratio,
-			sum_amount * (1 + tax_ratio) as total
-		  FROM (
-			SELECT 
-			  DATE '@@BILLING_YM@@' as billing_ym,
-			  M.member_id,
-			  M.mail,
-			  M.name,
-			  M.address,
-			  M.start_date,
-			  M.end_date,
-			  M.payment_method,
-			  (SELECT SUM(amount) 
-				 FROM T_CHARGE C 
-				WHERE C.start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@' ) AND 
-					  (C.end_date IS NULL OR C.end_date >= DATE '@@BILLING_YM@@')) as sum_amount,
-			  0.1 as tax_ratio
-			FROM T_MEMBER M
-			WHERE
-			  M.start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@') AND 
-			  (M.end_date IS NULL OR M.end_date >= DATE '@@BILLING_YM@@')
-		  )""";
+				INSERT INTO T_BILLING_DATA (
+					billing_ym,
+					member_id,
+					mail,
+					name,
+					address,
+					start_date,
+					end_date,
+					payment_method,
+					amount,
+					tax_ratio,
+					total)
+				SELECT
+					billing_ym,
+					member_id,
+					mail,
+					name,
+					address,
+					start_date,
+					end_date,
+					payment_method,
+					sum_amount,
+					tax_ratio,
+					sum_amount * (1 + tax_ratio) as total
+				FROM (
+					SELECT
+					DATE '@@BILLING_YM@@' as billing_ym,
+					M.member_id,
+					M.mail,
+					M.name,
+					M.address,
+					M.start_date,
+					M.end_date,
+					M.payment_method,
+					(SELECT SUM(amount)
+						FROM T_CHARGE C
+						WHERE C.start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@' ) AND
+							(C.end_date IS NULL OR C.end_date >= DATE '@@BILLING_YM@@')) as sum_amount,
+					0.1 as tax_ratio
+					FROM T_MEMBER M
+					WHERE
+					M.start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@') AND
+					(M.end_date IS NULL OR M.end_date >= DATE '@@BILLING_YM@@')
+				)""";
 		sql = sql.replace("@@BILLING_YM@@", targetYm.format(DateTimeFormatter.ISO_DATE));
 		processedCount = jdbcTemplate.update(sql);
 		logger.info(String.format("%d件追加しました。", processedCount));
@@ -124,41 +127,40 @@ public class BatchApplication implements CommandLineRunner {
 		// 請求明細データの作成と挿入
 		logger.info(String.format("%s分の請求明細データを追加しています。", targetYmStr));
 		sql = """
-			  INSERT INTO T_BILLING_DETAIL_DATA(
-				billing_ym,
-				member_id,
-				charge_id,
-				name,
-				amount,
-				start_date,
-				end_date)
-			  SELECT 
-				DATE '@@BILLING_YM@@' as billng_ym,
-				M.member_id,
-				C.charge_id,
-				C.name,
-				C.amount,
-				C.start_date,
-				C.end_date,
-			  FROM 
-				(SELECT * FROM T_MEMBER WHERE start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@') AND 
-						  (end_date IS NULL OR end_date >= DATE '@@BILLING_YM@@')) M,
-				(SELECT * FROM T_CHARGE WHERE start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@') AND 
-						  (end_date IS NULL OR end_date >= DATE '@@BILLING_YM@@')) C""";
+				INSERT INTO T_BILLING_DETAIL_DATA(
+					billing_ym,
+					member_id,
+					charge_id,
+					name,
+					amount,
+					start_date,
+					end_date)
+				SELECT
+					DATE '@@BILLING_YM@@' as billng_ym,
+					M.member_id,
+					C.charge_id,
+					C.name,
+					C.amount,
+					C.start_date,
+					C.end_date,
+				FROM
+					(SELECT * FROM T_MEMBER WHERE start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@') AND
+							(end_date IS NULL OR end_date >= DATE '@@BILLING_YM@@')) M,
+					(SELECT * FROM T_CHARGE WHERE start_date < DATEADD(MONTH, 1, DATE '@@BILLING_YM@@') AND
+							(end_date IS NULL OR end_date >= DATE '@@BILLING_YM@@')) C""";
 		sql = sql.replace("@@BILLING_YM@@", targetYm.format(DateTimeFormatter.ISO_DATE));
 		processedCount = jdbcTemplate.update(sql);
 		logger.info(String.format("%d件追加しました。", processedCount));
-
 	}
 
 	private LocalDate parseArgs(String[] args) throws Exception {
-		if(args.length != 1) {
+		if (args.length != 1) {
 			throw new Exception("コマンドライン引数が正しくありません。");
 		}
 		var formatter = new DateTimeFormatterBuilder()
-							.appendPattern("yyyyMM")
-		                    .parseDefaulting(ChronoField.DAY_OF_MONTH, 1)
-							.toFormatter();
+				.appendPattern("yyyyMM")
+				.parseDefaulting(ChronoField.DAY_OF_MONTH, 1)
+				.toFormatter();
 		return LocalDate.parse(args[0], formatter);
 	}
 }
