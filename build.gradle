@@ -1,4 +1,3 @@
 allprojects {
     group = 'com.s_giken.training'
-    version = '0.0.1-SNAPSHOT'
 }
