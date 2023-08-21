@@ -1,25 +1,65 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/app :: layout('料金検索', ~{::content}, 'charge')}">
-  <div th:fragment="content">
-    <form
-      th:action="@{/charge/search}"
-      th:object="${chargeSearchCondition}"
-      method="POST"
-    >
-      <div class="mb-3 row">
-        <label class="col-sm-2 col-form-label" for="name">料金名</label>
-        <div class="col-sm-10">
-          <input class="form-control" type="text" th:field="*{name}" />
+<div th:fragment="content">
+  <form th:action="@{/charge/search}" th:object="${chargeSearchCondition}" method="POST">
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label" for="name">料金名</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" th:field="*{name}" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label" for="name">表示項目</label>
+      <div class="col-sm-10">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" th:field="*{isShownId}">
+          <label class="form-check-label">料金ID</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" th:field="*{isShownName}">
+          <label class="form-check-label">料金名</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" th:field="*{isShownAmount}">
+          <label class="form-check-label">金額</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" th:field="*{isShownStartDate}">
+          <label class="form-check-label">適用開始日</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" th:field="*{isShownEndDate}">
+          <label class="form-check-label">適用終了日</label>
         </div>
       </div>
       <div class="mb-3 row">
-        <label class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-          <input class="btn btn-primary" type="submit" value="検索" />
-          <a class="btn btn-secondary" th:href="@{/charge/add}">追加</a>
+        <label class="col-sm-2 col-form-label">表示順</label>
+        <div class="col-auto">
+          <select class="form-control" th:field="*{sortColName}">
+            <option value="id">料金ID</option>
+            <option value="name">月額料金</option>
+            <option value="amount">月額料金</option>
+            <option value="start_date">運用開始日</option>
+            <option value="end_date">運用終了日</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <select class="form-control" th:field="*{sortOrder}">
+            <option value="asc">昇順</option>
+            <option value="desc">降順</option>
+          </select>
         </div>
       </div>
-    </form>
-    <div class="md-12"></div>
-  </div>
+    </div>
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-10">
+        <input class="btn btn-primary" type="submit" value="検索" />
+        <a class="btn btn-secondary" th:href="@{/charge/add}">追加</a>
+      </div>
+    </div>
+
+  </form>
+  <div class="md-12"></div>
+</div>
 </html>

@@ -12,4 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChargeSearchCondition {
     private String name;
+
+    private Boolean isShownId = true;
+    private Boolean isShownName = true;
+    private Boolean isShownAmount = true;
+    private Boolean isShownStartDate = true;
+    private Boolean isShownEndDate = true;
+
+    private String sortColName = "";
+    private String sortOrder = "";
 }
