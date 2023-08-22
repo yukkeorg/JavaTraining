@@ -2,7 +2,8 @@ package com.s_giken.training.webapp.service;
 
 import java.util.List;
 import java.util.Optional;
-
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.ScrollPosition.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,11 +56,14 @@ public class ChargeServiceImpl implements ChargeService {
      */
     @Override
     public List<Charge> findByCondition(ChargeSearchCondition condition) {
+        Sort.Direction direction =  (condition.getSortOrder().equals("asc")) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, condition.getSortColName());
+
         List<Charge> result = null;
         if (condition.getName() == null || condition.getName().isEmpty()) {
-            result = chargeRepository.findAll();
+            result = chargeRepository.findAll(sort);
         } else {
-            result = chargeRepository.findByNameLike("%" + condition.getName() + "%");
+            result = chargeRepository.findByNameLike("%" + condition.getName() + "%", sort);
         }
         return result;
     }
