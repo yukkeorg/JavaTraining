@@ -3,10 +3,8 @@ package com.s_giken.training.webapp.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.ScrollPosition.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.s_giken.training.webapp.model.Charge;
 import com.s_giken.training.webapp.model.ChargeSearchCondition;
 import com.s_giken.training.webapp.repository.ChargeRepository;
@@ -56,9 +54,11 @@ public class ChargeServiceImpl implements ChargeService {
      */
     @Override
     public List<Charge> findByCondition(ChargeSearchCondition condition) {
-        Sort.Direction direction =  (condition.getSortOrder().equals("asc")) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort.Direction direction =
+                (condition.getSortOrder().equals("asc"))
+                        ? Sort.Direction.ASC
+                        : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, condition.getSortColName());
-
         List<Charge> result = null;
         if (condition.getName() == null || condition.getName().isEmpty()) {
             result = chargeRepository.findAll(sort);
@@ -76,10 +76,6 @@ public class ChargeServiceImpl implements ChargeService {
     @Override
     @Transactional
     public void save(Charge charge) {
-        var c = chargeRepository.findById(charge.getChargeId());
-        if (c.isPresent()) {
-
-        }
         chargeRepository.save(charge);
     }
 
