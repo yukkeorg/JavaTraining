@@ -6,10 +6,27 @@
     "configurations": [
         {
             "type": "java",
-            "name": "WebappApplication",
+            "name": "WebApp",
             "request": "launch",
             "mainClass": "com.s_giken.training.webapp.WebappApplication",
             "projectName": "webapp"
-        }
+        },
+        {
+            "type": "java",
+            "name": "Batch",
+            "request": "launch",
+            "mainClass": "com.s_giken.training.batch.BatchApplication",
+            "projectName": "batch",
+            "args": [
+                "${input:inputParameter}"
+            ]
+        },
+    ],
+    "inputs": [
+        {
+            "id": "inputParameter",
+            "type": "promptString",
+            "description": "引数とする文字列を入力",
+        },
     ]
 }
