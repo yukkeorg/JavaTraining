@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
-import com.s_giken.training.webapp.model.Member;
-import com.s_giken.training.webapp.model.MemberSearchCondition;
+import com.s_giken.training.webapp.model.entity.Member;
+import com.s_giken.training.webapp.model.entity.MemberSearchCondition;
 import com.s_giken.training.webapp.repository.MemberRepository;
 
 /**
- * 加入者管理機能のサービスクラス
+ * 加入者管理機能のサービスクラス(実態クラス)
  */
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -54,8 +53,8 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public List<Member> findByConditions(MemberSearchCondition memberSearchCondition) {
-        return memberRepository.findByMailLike(
-                "%" + memberSearchCondition.getMail() + "%");
+        // TODO: 氏名検索用メソッドを呼び出すように修正
+        return memberRepository.findByMailLike("%" + memberSearchCondition.getMail() + "%");
     }
 
     /**
