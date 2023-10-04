@@ -40,6 +40,7 @@ public class BatchApplication implements CommandLineRunner {
 		logger.info("-".repeat(40));
 
 		// TODO
+		// ここにバッチ処理のコードを記述する
 
 		logger.info("-".repeat(40));
 	}
