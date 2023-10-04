@@ -39,8 +39,10 @@ public class BatchApplication implements CommandLineRunner {
 	public void run(String... args) throws RuntimeException {
 		logger.info("-".repeat(40));
 
-		// TODO
-		// ここにバッチ処理のコードを記述する
+		// TODO: ここにバッチ処理のコードを記述する
+		// * データベースからデータを取得する
+		// * データを加工する
+		// * 加工したデータをデータベースに登録する
 
 		logger.info("-".repeat(40));
 	}
