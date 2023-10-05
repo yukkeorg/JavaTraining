@@ -15,7 +15,11 @@
 		"vscode": {
 			"extensions": [
 				"vscjava.vscode-java-pack",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"vscjava.vscode-gradle",
+				"vscjava.vscode-spring-boot-dashboard",
+				"vscjava.vscode-spring-initializr",
+				"vmware.vscode-spring-boot"
 			]
 		}
 	}
