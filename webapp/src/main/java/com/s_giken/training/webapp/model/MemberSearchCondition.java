@@ -1,4 +1,4 @@
-package com.s_giken.training.webapp.model.entity;
+package com.s_giken.training.webapp.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 public class MemberSearchCondition {
     // メールアドレス検索用
     private String mail;
-    // TODO: 氏名検索用メンバ変数を用意
+    private String name;
+    private String sortColName;
+    private String sortOrder;
 }
